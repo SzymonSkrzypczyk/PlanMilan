@@ -1,0 +1,65 @@
+.tripDay {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.day-name {
+    text-align: start;
+    padding-left: 10px;
+    margin-bottom: 0;
+    font-weight: 900;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.day-name:hover {
+    color: #007bff; 
+}
+
+.horizontal-line {
+    height: 1px;
+    width: 100%;
+    background-color: white;
+}
+
+.activities-list {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;  
+    opacity: 0; 
+    overflow: hidden; 
+    transition: max-height 0.5s ease, opacity 0.5s ease; 
+}
+
+.activities-list.open {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+.activities-list.closed {
+    max-height: 0; 
+    opacity: 0;
+}
+
+.activity-item {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.activity-name {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.activity-item p {
+    font-size: 14px;
+}
+
+.activity-item p:first-of-type {
+    font-style: italic;
+}
