@@ -9,10 +9,10 @@ model = genai.GenerativeModel("gemini-2.0-flash")
 
 prompt_template = """Zaplanuj wycieczkę po {country} na {date}.""" # przykład szablonu
 
-# funkcja do ła
+# funkcja do generowania odpowiedzi
 def generate_response(prompt, country, date):
   filled_prompt = prompt.format(country=country, date=date, prompt=prompt)
   response = model.generate_content(filled_prompt)
   return response.text
 
-print(generate_response("Włochy", "7 dni", prompt_template)) # użycie szablonu
+print(generate_response(prompt_template, "Wlochy", "7 dni")) # użycie szablonu
