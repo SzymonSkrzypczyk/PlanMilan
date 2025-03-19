@@ -7,10 +7,11 @@ interface InputProps {
     duration: string;
     setDuration: (duration: string) => void;
     setStarted: (started: boolean) => void;
+    setReady: (ready: boolean) => void;
 }
 
 
-export default function PlaceInput({destination, setDestination, duration, setDuration, setStarted}: InputProps) {
+export default function PlaceInput({destination, setDestination, duration, setDuration, setStarted, setReady}: InputProps) {
     return <div className="input-container">
         <div className="input-field" id="rounded-input">
             <h4>Where to?</h4>
@@ -20,6 +21,6 @@ export default function PlaceInput({destination, setDestination, duration, setDu
             <h4>How long?</h4>
             <input id="duration" placeholder="days, weeks" value={duration} onChange={(e) => setDuration(e.target.value)}/>
         </div>
-        <button id="confirm" onClick={() => setStarted(true)}>Confirm</button>
+        <button id="confirm" onClick={() => {setStarted(true); setReady(false)}}>Confirm</button>
     </div>
 }

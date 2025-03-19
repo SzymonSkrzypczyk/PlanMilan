@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../assets/style/TripDayComponent.css";
 
-interface Activity {
+export interface Activity {
     activityName: string;
     activityDescription: string;
     activityTimeFrame?: string;
