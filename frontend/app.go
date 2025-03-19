@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 )
 
 // App struct
@@ -24,4 +25,10 @@ func (a *App) startup(ctx context.Context) {
 // Greet returns a greeting for the given name
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
+}
+
+// Call LLM api
+func (a *App) CallLLM(destination, duration string) string {
+	time.Sleep(time.Millisecond * 5000)
+	return fmt.Sprintf("Mom I'm going to %s for %s!", destination, duration)
 }

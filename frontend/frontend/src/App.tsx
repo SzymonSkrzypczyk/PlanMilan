@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import './App.css';
-import {Greet} from "../wailsjs/go/main/App";
+import {CallLLM} from "../wailsjs/go/main/App";
 import PlaceInput from './components/PlaceInput';
 import WaitComponent from './components/WaitComponent';
 import TripList from './components/TripList';
@@ -13,14 +13,15 @@ function App() {
 
     useEffect(() => {
         if (started) {
-            console.log("call api");
-            const wait = async () => {
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                console.log("waiting...");
-                setStarted(false);
-            };
-
-            wait();
+            console.log("calling api");
+            CallLLM(targetDestination, duration ).then((response) => {
+                console.log(response);
+                setReady(true);
+            }
+            ).catch((error) => {
+                console.log(error);
+            }
+            );
         }
     }, [started]);
 
