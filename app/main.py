@@ -11,8 +11,17 @@ prompt_template = """Zaplanuj wycieczkę po {country} na {date}.""" # przykład 
 
 # funkcja do generowania odpowiedzi
 def generate_response(prompt, country, date):
+  """
+  Funkcja generuje odpowiedź wykorzystując model językowy Google Generative AI. Formatuje podany szablon
+  oraz przesyła go do modelu generatywnego w celu uzyskania odpowiedzi.
+  :param prompt: Szablon tekstowy zawierający zmienne do uzupełnienia, np. "{country}" i "{date}".
+  :param country: Nazwa kraju, który będzie wstawiony w odpowiednim miejscu szablonu.
+  :param date: Okres czasu, który również zostanie wstawiony w odpowiednie miejsce szablonu.
+  :return: Tekst odpowiedzi wygenerowany przez model językowy.
+  """
   filled_prompt = prompt.format(country=country, date=date, prompt=prompt)
   response = model.generate_content(filled_prompt)
   return response.text
 
-print(generate_response(prompt_template, "Wlochy", "7 dni")) # użycie szablonu
+
+print(generate_response(prompt_template, "Włochy", "7 dni")) # użycie szablonu
