@@ -2,8 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; 
     gap: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 9999;
 }
 
 .dot {
@@ -34,7 +40,6 @@
     animation-delay: 0.8s;
 }
 
-/* Bouncing animation */
 @keyframes bounce {
     0%, 100% {
         transform: translateY(0);

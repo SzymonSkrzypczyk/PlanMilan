@@ -12,6 +12,13 @@ interface InputProps {
 
 
 export default function PlaceInput({destination, setDestination, duration, setDuration, setStarted, setReady}: InputProps) {
+    const verify = () => {
+        if (destination === "" || duration === "") {
+            return;
+        }
+        setStarted(true);
+        setReady(false);
+    }
     return <div className="input-container">
         <div className="input-field" id="rounded-input">
             <h4>Where to?</h4>
@@ -21,6 +28,6 @@ export default function PlaceInput({destination, setDestination, duration, setDu
             <h4>How long?</h4>
             <input id="duration" placeholder="days, weeks" value={duration} onChange={(e) => setDuration(e.target.value)}/>
         </div>
-        <button id="confirm" onClick={() => {setStarted(true); setReady(false)}}>Confirm</button>
+        <button id="confirm" onClick={verify}>Confirm</button>
     </div>
 }

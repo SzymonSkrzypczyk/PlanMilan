@@ -11,6 +11,7 @@
     font-weight: 900;
     cursor: pointer;
     transition: color 0.3s ease;
+    font-style: italic;
 }
 
 .day-name:hover {

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import TripDayComponent, { DayProps } from "./TripDayComponent";
+import "../assets/style/TripList.css";
 
 
 interface TripListProps{
@@ -8,9 +8,12 @@ interface TripListProps{
 
 
 export default function TripList({days}: TripListProps) {
-    return <div id="trips-list">
-        {days.map((day, index) => {
-            return <TripDayComponent key={index} dayName={day.dayName} dayActivities={day.dayActivities}/>
-        })}
+    return <div className="trip-layout">
+        <h2>Here's your plan:</h2>
+        <div id="trips-list">
+            {days.map((day, index) => {
+                return <TripDayComponent key={index} dayName={day.dayName} dayActivities={day.dayActivities}/>
+            })} 
+        </div>
     </div>
 }
