@@ -7,7 +7,21 @@ _ = load_dotenv(find_dotenv())
 genai.configure(api_key=os.environ.get("GOOGLE_AI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash")
 
-prompt_template = """Zaplanuj wycieczkę po {country} na {date}.""" # przykład szablonu
+prompt_template = """Zaplanuj mi wycieczkę po {country} na {date} dni w formacie JSON takim jak poniżej. Każdy dzień powinien zawierać 2–4 aktywności. Uwzględnij lokalne atrakcje, kulturę, jedzenie i ciekawe doświadczenia. Użyj następującej struktury:
+{{
+  dzień: "dzień 1",
+  aktywnosci: [
+    {{
+      nazwa_aktywnosci: "nazwa aktywności",
+      opis_aktywnosci: "co się będzie robiło w ramach tej aktywności",
+      kiedy: "przedział czasowy, np. 10:00–12:00"
+    }},
+    ...
+  ]
+}}
+Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON. Przykładowo 7 dni = 7 obiektów w tablicy. Nie dodawaj tekstu spoza formatu JSON."""
+
+
 
 # funkcja do generowania odpowiedzi
 def generate_response(prompt, country, date):
@@ -21,7 +35,7 @@ def generate_response(prompt, country, date):
   """
   filled_prompt = prompt.format(country=country, date=date, prompt=prompt)
   response = model.generate_content(filled_prompt)
-  return response.text
+  return response.text.replace("```","").replace("json","")
 
 
-print(generate_response(prompt_template, "Włochy", "7 dni")) # użycie szablonu
+print(generate_response(prompt_template, "Seoul", "1 dzień")) # użycie szablonu
