@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 import google.generativeai as genai
+import json
 
 # załadowanie klucza i połączenie z gemini api
 _ = load_dotenv(find_dotenv())
@@ -35,7 +36,7 @@ def generate_response(prompt, country, date):
   """
   filled_prompt = prompt.format(country=country, date=date, prompt=prompt)
   response = model.generate_content(filled_prompt)
-  return response.text.replace("```","").replace("json","")
+  return json.dumps(response.text.replace("```","").replace("json","").strip())
 
 
 print(generate_response(prompt_template, "Seoul", "1 dzień")) # użycie szablonu
