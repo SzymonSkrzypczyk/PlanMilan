@@ -1,11 +1,13 @@
-from fastapi import FastAPI
 import os
+import json
+from fastapi import FastAPI
 from dotenv import load_dotenv, find_dotenv
 import google.generativeai as genai
-import json
+import uvicorn
+
 
 # Załadowanie klucza API i połączenie z Gemini
-_ = load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 genai.configure(api_key=os.environ.get("GOOGLE_AI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash")
 
@@ -40,9 +42,8 @@ def generate_response(prompt, country, date):
   """
   filled_prompt = prompt.format(country=country, date=date, prompt=prompt)
   response = model.generate_content(filled_prompt)
-  return json.dumps(response.text.replace("```","").replace("json","").strip())
+  return response.text.replace("```","").replace("json","").strip()
 
-# print(generate_response(prompt_template, "Seoul", "1 dzień")) # użycie szablonu
 
 # Endpoint API
 @app.get("/get_plan")
@@ -54,4 +55,8 @@ async def get_plan(duration: str, target_place: str):
 
     Zwraca plan podróży w formacie JSON.
     """
-    return generate_response(prompt_template, target_place, duration)
+    return json.loads(generate_response(prompt_template, target_place, duration))
+
+
+if __name__ == "__main__":
+   uvicorn.run(app, host="0.0.0.0", port=8000)
