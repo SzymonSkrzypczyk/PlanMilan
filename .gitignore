@@ -3,3 +3,6 @@
 venv/
 __pypackages__/
 __pycache__/
+MLProject
+app/MLProject
+frontend/MLProject

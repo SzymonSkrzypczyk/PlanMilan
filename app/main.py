@@ -1,13 +1,17 @@
+from fastapi import FastAPI
 import os
 from dotenv import load_dotenv, find_dotenv
 import google.generativeai as genai
 import json
 
-# załadowanie klucza i połączenie z gemini api
+# Załadowanie klucza API i połączenie z Gemini
 _ = load_dotenv(find_dotenv())
 genai.configure(api_key=os.environ.get("GOOGLE_AI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash")
 
+app = FastAPI()
+
+# Szablon prompta
 prompt_template = """Zaplanuj mi wycieczkę po {country} na {date} dni w formacie JSON takim jak poniżej. Każdy dzień powinien zawierać 2–4 aktywności. Uwzględnij lokalne atrakcje, kulturę, jedzenie i ciekawe doświadczenia. Użyj następującej struktury:
 {{
   dzień: "dzień 1",
@@ -24,7 +28,7 @@ Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON. Przyk
 
 
 
-# funkcja do generowania odpowiedzi
+# Funkcja generowania odpowiedzi
 def generate_response(prompt, country, date):
   """
   Funkcja generuje odpowiedź wykorzystując model językowy Google Generative AI. Formatuje podany szablon
@@ -38,5 +42,16 @@ def generate_response(prompt, country, date):
   response = model.generate_content(filled_prompt)
   return json.dumps(response.text.replace("```","").replace("json","").strip())
 
+# print(generate_response(prompt_template, "Seoul", "1 dzień")) # użycie szablonu
 
-print(generate_response(prompt_template, "Seoul", "1 dzień")) # użycie szablonu
+# Endpoint API
+@app.get("/get_plan")
+async def get_plan(duration: str, target_place: str):
+    """
+    Endpoint przyjmujący parametry:
+    - duration: liczba dni wycieczki
+    - target_place: miejsce docelowe podróży
+
+    Zwraca plan podróży w formacie JSON.
+    """
+    return generate_response(prompt_template, target_place, duration)
