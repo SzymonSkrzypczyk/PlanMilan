@@ -21,13 +21,13 @@ export default function PlaceInput({destination, setDestination, duration, setDu
     }
     return <div className="input-container">
         <div className="input-field" id="rounded-input">
-            <h4>Where to?</h4>
-            <input id="destination" placeholder="Country, city" value={destination} onChange={(e) => setDestination(e.target.value)}/>
+            <h4>Gdzie jedziesz?</h4>
+            <input id="destination" placeholder="Muqibabë..." value={destination} onChange={(e) => setDestination(e.target.value)}/>
         </div>
         <div className="input-field">
-            <h4>How long?</h4>
-            <input id="duration" placeholder="days, weeks" value={duration} onChange={(e) => setDuration(e.target.value)}/>
+            <h4>Na ile dni?</h4>
+            <input id="duration" placeholder="1..." value={duration} onChange={(e) => setDuration(e.target.value)}/>
         </div>
-        <button id="confirm" onClick={verify}>Confirm</button>
+        <button id="confirm" onClick={verify}>Planuj!</button>
     </div>
 }

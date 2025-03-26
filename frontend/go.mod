@@ -2,7 +2,7 @@ module frontend
 
 go 1.23
 
-require github.com/wailsapp/wails/v2 v2.10.1
+require github.com/wailsapp/wails/v2 v2.9.2
 
 require (
 	github.com/bep/debounce v1.2.1 // indirect

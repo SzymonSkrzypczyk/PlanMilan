@@ -9,10 +9,10 @@ interface TripListProps{
 
 export default function TripList({days}: TripListProps) {
     return <div className="trip-layout">
-        <h2>Here's your plan:</h2>
+        <h2>Twój plan:</h2>
         <div id="trips-list">
             {days.map((day, index) => {
-                return <TripDayComponent key={index} dayName={day.dayName} dayActivities={day.dayActivities}/>
+                return <TripDayComponent key={index} dzień={day.dzień} aktywnosci={day.aktywnosci}/>
             })} 
         </div>
     </div>

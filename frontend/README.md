@@ -1,19 +1,21 @@
-# README
+# Frontend a.k.a desktop app 😎
 
-## About
+## Requirements
+In order to run the frontend one needs:
+- [GoLang](https://go.dev/dl/)
+- [Go Wails](https://wails.io/docs/gettingstarted/installation)
+- [Node.js](https://nodejs.org/en/download)
 
-This is the official Wails React-TS template.
+## Starting dev environment
+In order to run the dev environment of the app:
+1) Enter the frontend directory ```cd frontend```
+2) Type in ```wails dev``` command
+3) Enjoy!
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+## Compling the desktop app 
+In order to compile the frontend app:
+1) type in ```wails build```
+2) production ready binary will be created inside `build/bin` directory
 
-## Live Development
-
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
-
-## Building
-
-To build a redistributable, production mode package, use `wails build`.
+## Notes
+- In order for the generation to work properly, the LLM API needs to be working on port **8000**
