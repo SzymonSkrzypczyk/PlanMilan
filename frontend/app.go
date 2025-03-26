@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 )
@@ -40,31 +41,29 @@ func (a *App) CallLLM(target_place, duration string) string {
 	fullURL := fmt.Sprintf("%s?%s", baseURL, params.Encode())
 	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
-		fmt.Println("Error creating request:", err)
+		log.Fatalln("Error creating request:", err)
 		return "{}"
 	}
-
-	fmt.Println("Request URL:", req.URL.String())
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("Error making request:", err)
+		log.Fatalln("Error making request:", err)
 		return "{}"
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		fmt.Println("Error: Received status", resp.Status)
+		log.Fatalln("Error: Received status", resp.Status)
 		return "{}"
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("Error reading response body:", err)
+		log.Fatalln("Error reading response body:", err)
 		return "{}"
 	}
 
-	fmt.Println("Raw JSON Response:", string(body))
+	log.Println("Raw JSON Response:", string(body))
 	return string(body)
 }

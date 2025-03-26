@@ -11,21 +11,21 @@ function App() {
     const [started, setStarted] = useState(false);
     const [ready, setReady] = useState(false);
     const [tripData, setTripData] = useState<{ 
-        dayName: string; 
-        dayActivities: { 
-            activityName: string; 
-            activityDescription: string; 
+        dzień: string; 
+        aktywnosci: { 
+            nazwa_aktywnosci: string; 
+            opis_aktywnosci: string; 
+            kiedy?: string;
         }[]; 
     }[]>([]);
 
     useEffect(() => {
         if (started) {
-            console.log("calling api");
             CallLLM(targetDestination, duration ).then((response) => {
-                console.log(response);
+                let data = JSON.parse(response);
                 setReady(true);
                 setStarted(false);
-                setTripData([{"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 2", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, ]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 2", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, ]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}]);
+                setTripData(data);
             }
             ).catch((error) => {
                 console.log(error);
@@ -33,7 +33,6 @@ function App() {
                 setStarted(false);
             }
             ).finally(() => {
-                console.log("done");
                 setStarted(false);
             }
             );
@@ -43,7 +42,7 @@ function App() {
 
     return (
         <div id="App">
-            <h1>Travel Planner</h1>
+            <h1>Planer podróży</h1>
             <PlaceInput destination={targetDestination} setDestination={setTargetDestination} duration={duration} setDuration={setDuration} setStarted={setStarted} setReady={setReady}/>
             {started && !ready ? (
                 <WaitComponent loading={started} />
