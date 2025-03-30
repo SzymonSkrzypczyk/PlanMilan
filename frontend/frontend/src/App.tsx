@@ -10,6 +10,7 @@ function App() {
     const [duration, setDuration] = useState("");
     const [started, setStarted] = useState(false);
     const [ready, setReady] = useState(false);
+    const [finished, setFinished] = useState(false);
     const [tripData, setTripData] = useState<{ 
         dzień: string; 
         aktywnosci: { 
@@ -24,6 +25,7 @@ function App() {
             CallLLM(targetDestination, duration ).then((response) => {
                 let data = JSON.parse(response);
                 setReady(true);
+                setFinished(false);
                 setStarted(false);
                 setTripData(data);
             }
@@ -34,6 +36,7 @@ function App() {
             }
             ).finally(() => {
                 setStarted(false);
+                setFinished(true);
             }
             );
         }
@@ -47,7 +50,7 @@ function App() {
             {started && !ready ? (
                 <WaitComponent loading={started} />
             ) : (
-                <TripList days={tripData || []} />
+                <TripList days={tripData || []} finished={finished}/>
             )}
             {/*<TripList days={[{"dayName": "day 1", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}, {"activityName": "running", "activityDescription": "Running with friends"}]}, {"dayName": "day 2", "dayActivities": [{"activityName": "swimming", "activityDescription": "Swimming with friends"}]}]}/>*/}
         </div>
