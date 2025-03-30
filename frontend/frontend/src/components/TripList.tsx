@@ -4,12 +4,13 @@ import "../assets/style/TripList.css";
 
 interface TripListProps{
     days: DayProps[];
+    finished: boolean;
 }
 
 
-export default function TripList({days}: TripListProps) {
+export default function TripList({days, finished}: TripListProps) {
     return <div className="trip-layout">
-        <h2>Twój plan:</h2>
+        {finished && <h2>Twój plan:</h2>}
         <div id="trips-list">
             {days.map((day, index) => {
                 return <TripDayComponent key={index} dzień={day.dzień} aktywnosci={day.aktywnosci}/>
