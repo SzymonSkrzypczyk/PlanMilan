@@ -1,23 +1,23 @@
-# How to odpalic UI
-## Dependencje
-Zeby odpalic UI potrzeba:
+# PlanMilan
 
-1) Go
+## Purpose
+Planning a trip can be **time-consuming**, especially when trying to fit everything into a limited schedule. This project helps simplify the process by generating a well-structured itinerary based on the destination and trip duration. It takes into account factors such as trip duration and its location and creates a plan that maximizes the fun!
 
-2) Go Wails 
+## How to run 
+In order to learn in detail how to run the app head over to `app/` and `frontend/` directories to learn about *backend* and *frontend* respectively. The general flow of running the app is as follows:
+    1) acquiring a Gemini API key and save it either as an environment variable or a key/value pair inside `app/.env` file
+    2) running the FastAPI API using either `uvicorn` or directly by running the script 
+    3) running the Go Wails app using `wails dev` command   
+    4) enjoy ;)
 
-3) node.js
+## Use of AI 
+The app heavily utilizes Artificial Interface for its main feauture and purpose, which is generating a plan of any given trip, the underlying model is **Gemini 2.0 Flash** provided by **Google**
 
-## Instalowanie dependencji
-1) zeby zainstalowac GoLang trzeba przeleciec instrukcje z tej stronki `https://go.dev/doc/install`
+## Contributors    
+- [Szymon Skrzypczyk](https://github.com/SzymonSkrzypczyk) 
+- [Jakub Milasz](https://github.com/jakub-milasz) 
+- [Julia Kot](https://github.com/julkot1237) 
+- [Jan Dworak](https://github.com/janeczk) 
+- [Jakub Błazenek](https://github.com/kubablazenek) 
+- [Eliza Muca](https://github.com/elizam21) 
 
-2) zeby pobrac Wails wystarczy odpalic ```go install github.com/wailsapp/wails/v2/cmd/wails@latest```, a potem sprawdzic, czy installacja sie udala przez odpalenie ```wails version```, jesli Wails nie jest wykryte mozliwe, ze katalog go/bin nie zostal dodany do zmiennej srodowiskowej PATH
-
-3) zeby pobrac node.js trzeba przeleciec instrukcje z tej stronki `https://nodejs.org/en/download`
-
-## Odpalanie samej apki
-1) zmieniamy katalog na `frontend/`
-
-2) wpisujemy ```wails dev```
-
-3) powinno dzialac ;)
