@@ -1,12 +1,61 @@
-#trips-list{
+#trips-list {
     display: flex;
     flex-direction: column;
-    margin: 0 10% 10% 10%;
+    margin: 0 60px 60px 60px;
     overflow-y: auto;
-    gap: 10px;
-    height: 400px;
-
+    gap: 15px; /* Większy odstęp */
+    height: 900px;
     scrollbar-width: none;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Efekt rozmycia */
+}
+
+
+.trip-layout h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: #4FA3D1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(79, 163, 209, 0.6);
+    padding: 15px 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: inline-block;
+}
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%); /* Początkowo poza ekranem po lewej */
+        opacity: 0; /* Początkowo przezroczysty */
+    }
+    100% {
+        transform: translateX(0); /* Końcowa pozycja elementu */
+        opacity: 1; /* Element staje się widoczny */
+    }
+}
+
+.trip-day {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    opacity: 0; /* Ukryj na początku */
+    animation: slideIn 1s ease-out forwards; /* Animacja slide-in */
+    animation-delay: 0.3s; /* Opóźnienie animacji */
+}
+
+/* Efekt przy najechaniu na element */
+.trip-day:hover {
+    background-color: rgba(79, 163, 209, 0.1);
 }
 
 .trip-layout{
@@ -18,6 +67,25 @@
     font-weight: 800;
 }
 
+.trip-title {
+    font-family: "Montserrat", sans-serif; /* Nowa czcionka */
+    font-size: 36px; /* Większy rozmiar */
+    font-weight: 900; /* Bardziej wyraziste */
+    color: #4FA3D1; /* Ciemniejszy pastelowy błękit */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(79, 163, 209, 0.5);
+    padding: 15px 25px;
+    background-color: rgba(255, 255, 255, 0.2); /* Subtelna przezroczystość */
+    border-radius: 10px;
+    display: inline-block;
+}
+
+
 *{
     font-family: "Kanit", sans-serif;
 }
+
+
+
