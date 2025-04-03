@@ -11,6 +11,11 @@
     background: rgba(255, 255, 255, 0.3);
     z-index: 9999;
 }
+.wait-image {
+    width: 100px; /* Dostosuj szerokość */
+    height: auto; /* Zachowaj proporcje */
+    margin-bottom: 10px; /* Dodaj odstęp od kropek */
+}
 
 .dot {
     width: 20px;
