@@ -20,7 +20,7 @@ prompt_template = """Zaplanuj mi wycieczkę po {country} na {date} dni w formaci
     ...
   ]
 }}
-Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON. Przykładowo 7 dni = 7 obiektów w tablicy. Nie dodawaj tekstu spoza formatu JSON."""
+Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON.  Nie dodawaj tekstu spoza formatu JSON."""
 
 
 
