@@ -1,0 +1,102 @@
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px; /* Większy odstęp */
+    margin-top: clamp(20px, 6vh, 60px); /* Większy margines */
+    transform: scale(1.2); /* Powiększenie całego boxa */
+}
+
+.input-field{
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: white;
+    gap: 3px;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:wght@800&display=swap');
+
+.input-field input{
+    font-weight: 700;
+    font-style: italic;
+    font-family: "Kanit", sans-serif;
+    font-weight: 800;
+}
+
+
+/*
+.input-field:first{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+*/
+
+#rounded-input{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.input-field h4{
+    text-align: start;
+    font-family: "Lora", serif;
+    padding: 0 0 0 15px;
+    font-size: clamp(0.2rem, 4vw, 1rem);
+    color: black;
+    margin: 12px 0 0 0;
+}
+
+#destination{
+    padding: 5px 0 0 15px;
+    font-size: larger;
+    font-family: "Lora", serif;
+    background-color: white;
+    border: none;
+    margin-top: 0;
+}
+
+#destination:focus{
+    outline: none;
+}
+
+#duration{
+    padding: 5px 0 0 15px;
+    font-size: larger;
+    font-family: "Lora", serif;
+    background-color: white;
+    border: none;
+}
+
+#duration:focus{
+    outline: none;
+}
+
+#confirm{
+    height: 80px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 0;
+    background-color: rgb(28, 114, 195);
+    font-size: clamp(0.2rem, 4vw, 1rem);
+    color:aliceblue;
+    margin-left: 0;
+    font-family: "Lora", serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#confirm:hover{
+    background-color: rgb(6, 100, 187);
+}
+
+#confirm:active{
+    transform: translateY(1px);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');

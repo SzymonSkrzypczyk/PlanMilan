@@ -1,13 +1,19 @@
 import os
+import json
+from fastapi import FastAPI
 from dotenv import load_dotenv, find_dotenv
 import google.generativeai as genai
-import json
+import uvicorn
 
-# załadowanie klucza i połączenie z gemini api
-_ = load_dotenv(find_dotenv())
+
+# Załadowanie klucza API i połączenie z Gemini
+load_dotenv(find_dotenv())
 genai.configure(api_key=os.environ.get("GOOGLE_AI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash")
 
+app = FastAPI()
+
+# Szablon prompta
 prompt_template = """Zaplanuj mi wycieczkę po {country} na {date} dni w formacie JSON takim jak poniżej. Każdy dzień powinien zawierać 2–4 aktywności. Uwzględnij lokalne atrakcje, kulturę, jedzenie i ciekawe doświadczenia. Użyj następującej struktury:
 {{
   dzień: "dzień 1",
@@ -20,11 +26,11 @@ prompt_template = """Zaplanuj mi wycieczkę po {country} na {date} dni w formaci
     ...
   ]
 }}
-Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON.  Nie dodawaj tekstu spoza formatu JSON."""
+Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON. Nie dodawaj tekstu spoza formatu JSON."""
 
 
 
-# funkcja do generowania odpowiedzi
+# Funkcja generowania odpowiedzi
 def generate_response(prompt, country, date):
   """
   Funkcja generuje odpowiedź wykorzystując model językowy Google Generative AI. Formatuje podany szablon
@@ -36,7 +42,22 @@ def generate_response(prompt, country, date):
   """
   filled_prompt = prompt.format(country=country, date=date, prompt=prompt)
   response = model.generate_content(filled_prompt)
-  return json.dumps(response.text.replace("```","").replace("json","").strip())
+  return response.text.replace("```","").replace("json","").strip()
 
 
-print(generate_response(prompt_template, "Seoul", "1 dzień")) # użycie szablonu
+# Endpoint API
+@app.get("/get_plan")
+async def get_plan(duration: str, target_place: str):
+    """
+    Endpoint przyjmujący parametry:
+    - duration: liczba dni wycieczki
+    - target_place: miejsce docelowe podróży
+
+    Zwraca plan podróży w formacie JSON.
+    """
+    return json.loads(generate_response(prompt_template, target_place, duration))
+
+
+if __name__ == "__main__":
+   uvicorn.run(app, host="0.0.0.0", port=8000)
+
