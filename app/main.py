@@ -26,7 +26,7 @@ prompt_template = """Zaplanuj mi wycieczkę po {country} na {date} dni w formaci
     ...
   ]
 }}
-Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON. Przykładowo 7 dni = 7 obiektów w tablicy. Nie dodawaj tekstu spoza formatu JSON."""
+Zrób taką strukturę dla każdego dnia osobno, najlepiej w tablicy JSON. Nie dodawaj tekstu spoza formatu JSON."""
 
 
 
@@ -60,3 +60,4 @@ async def get_plan(duration: str, target_place: str):
 
 if __name__ == "__main__":
    uvicorn.run(app, host="0.0.0.0", port=8000)
+
